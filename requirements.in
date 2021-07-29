@@ -4,3 +4,10 @@ https://divio-addons.s3-eu-central-1.amazonaws.com/aldryn-django/2.2.24.0/be8e30
 https://divio-addons.s3-eu-central-1.amazonaws.com/aldryn-sso/2.0.0/e6eccefa-e8f5-492d-8e71-79fc99f30201/aldryn-sso-2.0.0.tar.gz#egg=aldryn-sso==2.0.0
 https://divio-addons.s3-eu-central-1.amazonaws.com/aldryn-wagtail/2.13.4.0/344ae555-7cfe-4b46-99bd-e58da2bd1854/aldryn-wagtail-2.13.4.0.tar.gz#egg=aldryn-wagtail==2.13.4.0
 # </INSTALLED_ADDONS>
+bpython==0.21 
+django-extensions==3.1.3 
+django-debug-toolbar==3.2.1
+pytest-django==4.4.0
+pytest-factoryboy==2.1.0
+pytest-mock==3.6.1
+pytest-xdist==2.3.0 

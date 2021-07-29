@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+wagtail = "*"
+pytest-django = "==4.4.0"
+pytest-factoryboy = "==2.1.0"
+pytest-mock = "==3.6.1"
+pytest-xdist = "==2.3.0"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
