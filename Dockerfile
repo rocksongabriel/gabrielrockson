@@ -36,3 +36,6 @@ COPY . /app
 # <STATIC>
 RUN DJANGO_MODE=build python manage.py collectstatic --noinput
 # </STATIC>
+
+EXPOSE 587
+EXPOSE 465
