@@ -54,3 +54,6 @@ INSTALLED_APPS.extend([
 # See https://docs.divio.com/en/latest/how-to/configure-settings.html#list
 
 AUTH_USER_MODEL = "users.User"
+
+WAGTAIL_SITE_NAME = "Gabriel Rockson"
+WAGTAIL_APPEND_SLASH = True
