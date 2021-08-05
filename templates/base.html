@@ -12,10 +12,48 @@
 
     <title>{% block title %}{% endblock %}</title>
 </head>
-<body>
+<body class="bg-gray-100">
     
     <!-- Navigation Bar -->
+    <!-- TODO - change the font family -->
     {% block navigation %}
+    
+    <nav class="bg-white">
+        <div class="flex flex-row justify-between px-2 md:px-6 py-2">
+            <!-- logo section -->
+            <div class="flex items-center">
+                <a href="#" class="text-2xl font-extrabold text-gray-600">
+                    <span class="text-pink-600">G.</span><span class="font-base text-gray-900">rockson</span>
+                </a>
+            </div>
+
+            <!-- primary navigation -->
+            <div class="md:flex items-center space-x-3 text-gray-800 text-lg lg:text-xl hidden font-mono"> <!-- hide on mobile-->
+                <a href="#" class="hover:text-purple-600 font-bold transition-colors duration-150">blog</a>
+                <a href="#" class="hover:text-purple-600 font-bold transition-colors duration-150">projects</a>
+                <a href="#" class="hover:text-purple-600 font-bold transition-colors duration-150">gotchas</a>
+            </div>
+
+            <!-- secondary navigation -->
+            <div class="flex items-center space-x-4 font-mono">
+                <div class="md:flex hidden space-x-3 text-gray-800 text-lg"> <!-- hide on mobile -->
+                    <a href="#" class="hover:text-purple-600 font-bold transition-colors duration-150">about me</a>
+                    <a href="#" class="hover:text-purple-600 font-bold transition-colors duration-150">contact me</a>
+                </div>
+                <a 
+                    href="#" 
+                    class="py-2 px-4 bg-blue-600 hover:bg-blue-700 hover:rotate-3 transform hover:scale-105 transition delay-100 duration-100 rounded-md drop-shadow-lg text-white font-bold text-lg"
+                >Hire Me</a>
+                <!-- put mobile menu icon here -->
+
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div> <!-- Hide on large screens -->
+
+        </div>
+    </nav>
+
     {% endblock navigation %}
 
     <!-- Content -->
@@ -26,5 +64,9 @@
     {% block footer %}
     {% endblock footer %}
 
+
+    <script>
+
+    </script>
 </body>
 </html>
