@@ -54,16 +54,18 @@
             </div>
         </div>
         <!-- Mobile menu -->
-        <div class="flex justify-end" id="mobileMenu"> <!-- Hide on large screens -->
+        <div class="hidden justify-end fixed right-0" id="mobileMenu"> <!-- Hide on large screens -->
             <div class="bg-gray-900 text-white text-right px-3 pl-10 font-mono" style="min-width: 50px;"> <!-- change the font family-->
                 <div class="flex flex-col text-lg py-5">
-                    <a href="#">blog</a>
-                    <a href="#">projects</a>
-                    <a href="#">gotchas</a>
+                    <div class="flex flex-col lg:hidden">
+                        <a href="#">blog</a>
+                        <a href="#">projects</a>
+                        <a href="#">gotchas</a>
+                    </div>
                     
                     <div class="flex flex-col mt-5">
-                        <a href="#">about me</a>
-                        <p class="uppercase text-gray-500 font-serif font-bold text-sm pt-3 pb-1 text-center">My Networks</>
+                        <a href="#" class="lg:hidden">about me</a>
+                        <p class="uppercase text-gray-500 font-serif font-bold text-sm pt-3 lg:pt-0 pb-1 text-center">My Networks</>
 
                         <div class="flex flex-col font-bold font-sans"> <!-- Add icons to the networks-->
                             <a href="#">My Github</a>
@@ -91,9 +93,14 @@
         let menuToggle = document.getElementById("menuToggle");
         let mobileMenu = document.getElementById("mobileMenu");
 
-        menuToggle.addEventListener("click", () => {
+        let toggleMenu = () => {
             mobileMenu.classList.toggle("hidden");
-        })
+            mobileMenu.classList.toggle("flex");
+        };
+
+        menuToggle.addEventListener("click", () => {
+            toggleMenu();
+        });
     </script>
 </body>
 </html>
