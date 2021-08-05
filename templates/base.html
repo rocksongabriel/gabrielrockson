@@ -23,7 +23,7 @@
             <!-- logo section -->
             <div class="flex items-center">
                 <a href="#" class="text-2xl font-extrabold text-gray-600">
-                    <span class="text-pink-600">G.</span><span class="font-base text-gray-900">rockson</span>
+                    <span class="text-pink-600">G</span><span class="text-pink-400"><</span><span class="font-base text-gray-400">rockson</span><span class="text-pink-400">/></span>
                 </a>
             </div>
 
@@ -46,7 +46,7 @@
                     class="py-2 px-4 bg-blue-600 hover:bg-blue-700 hover:rotate-3 transform hover:scale-105 transition delay-100 duration-100 rounded-md drop-shadow-lg text-white font-bold text-lg"
                 >Hire Me</a>
                 <!-- put mobile menu icon here -->
-                <div class="space-y-1">
+                <div class="space-y-1 cursor-pointer" id="menuToggle">
                     <div class="w-4 h-1 bg-gray-500"></div>
                     <div class="w-6 h-1 bg-gray-700"></div>
                     <div class="w-7 h-1 bg-black"></div>
@@ -54,7 +54,7 @@
             </div>
         </div>
         <!-- Mobile menu -->
-        <div class="md:hidden flex justify-end"> <!-- Hide on large screens -->
+        <div class="flex justify-end" id="mobileMenu"> <!-- Hide on large screens -->
             <div class="bg-gray-900 text-white text-right px-3 pl-10 font-mono" style="min-width: 50px;"> <!-- change the font family-->
                 <div class="flex flex-col text-lg py-5">
                     <a href="#">blog</a>
@@ -87,8 +87,13 @@
     {% endblock footer %}
 
 
-    <script>
+    <script>   
+        let menuToggle = document.getElementById("menuToggle");
+        let mobileMenu = document.getElementById("mobileMenu");
 
+        menuToggle.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        })
     </script>
 </body>
 </html>
