@@ -47,6 +47,10 @@ INSTALLED_APPS.extend([
     # Extend the INSTALLED_APPS setting by listing additional applications here
     "users.apps.UsersConfig",
     "home.apps.HomeConfig",
+    "blog.apps.BlogConfig",
+
+    # 3rd party applications
+    "django_extensions",
 ])
 
 # To see the settings that have been applied, use the Django diffsettings 
