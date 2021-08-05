@@ -12,14 +12,14 @@
 
     <title>{% block title %}{% endblock %}</title>
 </head>
-<body class="bg-gray-100">
+<body class="">
     
     <!-- Navigation Bar -->
     <!-- TODO - change the font family -->
     {% block navigation %}
     
     <nav class="bg-white">
-        <div class="flex flex-row justify-between px-2 md:px-6 py-2">
+        <div class="flex flex-row justify-between px-2 md:px-6 py-3 lg:py-2">
             <!-- logo section -->
             <div class="flex items-center">
                 <a href="#" class="text-2xl font-extrabold text-gray-600">
@@ -28,6 +28,7 @@
             </div>
 
             <!-- primary navigation -->
+            <!-- TODO - move the repetitive css classes to a component -->
             <div class="md:flex items-center space-x-3 text-gray-800 text-lg lg:text-xl hidden font-mono"> <!-- hide on mobile-->
                 <a href="#" class="hover:text-purple-600 font-bold transition-colors duration-150">blog</a>
                 <a href="#" class="hover:text-purple-600 font-bold transition-colors duration-150">projects</a>
@@ -45,12 +46,33 @@
                     class="py-2 px-4 bg-blue-600 hover:bg-blue-700 hover:rotate-3 transform hover:scale-105 transition delay-100 duration-100 rounded-md drop-shadow-lg text-white font-bold text-lg"
                 >Hire Me</a>
                 <!-- put mobile menu icon here -->
-
+                <div class="space-y-1">
+                    <div class="w-4 h-1 bg-gray-500"></div>
+                    <div class="w-6 h-1 bg-gray-700"></div>
+                    <div class="w-7 h-1 bg-black"></div>
+                </div>
             </div>
         </div>
         <!-- Mobile menu -->
-        <div> <!-- Hide on large screens -->
+        <div class="md:hidden flex justify-end"> <!-- Hide on large screens -->
+            <div class="bg-gray-900 text-white text-right px-3 pl-10 font-mono" style="min-width: 50px;"> <!-- change the font family-->
+                <div class="flex flex-col text-lg py-5">
+                    <a href="#">blog</a>
+                    <a href="#">projects</a>
+                    <a href="#">gotchas</a>
+                    
+                    <div class="flex flex-col mt-5">
+                        <a href="#">about me</a>
+                        <p class="uppercase text-gray-500 font-serif font-bold text-sm pt-3 pb-1 text-center">My Networks</>
 
+                        <div class="flex flex-col font-bold font-sans"> <!-- Add icons to the networks-->
+                            <a href="#">My Github</a>
+                            <a href="#">My LinkedIn</a>
+                            <a href="#">My Twitter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
 
