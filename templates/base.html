@@ -31,14 +31,14 @@
             <!-- primary navigation -->
             <!-- TODO - move the repetitive css classes to a component -->
             <div class="md:flex items-center space-x-3 text-gray-800 text-lg lg:text-xl hidden font-mono"> <!-- hide on mobile-->
-                <a href="#" class="hover:text-purple-600 font-base transition-colors duration-150">blog | </a>
+                <a href="/blog" class="hover:text-purple-600 font-base transition-colors duration-150">blog | </a>
                 <a href="#" class="hover:text-purple-600 font-base transition-colors duration-150">projects | </a>
                 <a href="#" class="hover:text-purple-600 font-base transition-colors duration-150">gotchas</a>
             </div>
 
             <!-- secondary navigation -->
             <div class="flex items-center space-x-4 font-mono">
-                <div class="md:flex hidden space-x-3 text-gray-800 text-lg"> <!-- hide on mobile -->
+                <div class="lg:flex hidden space-x-3 text-gray-800 text-lg"> <!-- hide on small screens -->
                     <a href="#" class="hover:text-purple-600 font-base transition-colors duration-150">about me | </a>
                     <a href="#" class="hover:text-purple-600 font-base transition-colors duration-150">contact me</a>
                 </div>
@@ -55,7 +55,7 @@
             </div>
         </div>
         <!-- Mobile menu -->
-        <div class="hidden justify-end fixed right-0 mt-2" id="mobileMenu"> <!-- Hide on large screens -->
+        <div class="hidden justify-end fixed right-0 mt-2 z-50" id="mobileMenu"> <!-- Hide on large screens -->
             <div 
                 class="bg-gray-900 text-gray-200 shadow-2xl rounded-lg text-right px-3 mr-2 pl-10 font-mono" 
                 style="min-width: 50px;"
@@ -63,7 +63,7 @@
             <!-- TODO - add animation to the entrance and leaving states of the navigation-->
                 <div class="flex flex-col text-lg py-5">
                     <div class="flex flex-col lg:hidden space-y-3">
-                        <a href="#">blog</a>
+                        <a href="/blog">blog</a>
                         <a href="#">projects</a>
                         <a href="#">gotchas</a>
                     </div>

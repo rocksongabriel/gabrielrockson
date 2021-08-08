@@ -5,4 +5,58 @@
 
 {% block content %}
 
+    <!-- mobile design first -->
+    <div class="mx-5 md:mx-10 lg:mx-16"> <!-- Container for the blog listing-->
+        
+        <div> <!-- A side section to list the blog categories on desktop -->
+
+        </div>
+        <div> <!-- The main section to display the blog listings -->
+            <!--
+                - blog title
+                - blog author
+                - blog published date
+                - small description
+                - blog tags
+            -->
+            
+            {% for o in "123456789"|make_list %}
+
+                <div class="my-10 shadow-lg hover:shadow-xl transform hover:scale-105 hover:border-red-500 p-5 transition delay-75 duration-200"> <!-- Blog listing container -->
+                    <a href="#"><h2 class="font-bold text-2xl text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, et?</h2></a>
+                    <p class="my-2 ml-4">
+                        <span class="text-gray-600">Gabriel Rockson</span> | <span class="text-green-500 font-bold text-sm md:text-basee
+                        ">8th August, 2021</span>
+                    </p>
+                    <p class="text-lg">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident praesentium tempore nemo voluptatum maxime obcaecati explicabo, laboriosam vel ex esse enim fuga doloribus aliquid illum ... <a href="#" class="text-blue-500 hover:underline">continue reading <span><i class="fas fa-arrow-right    "></i></span> </a>
+                    </p>
+                    <p class="flex flex-wrap space-x-4"> <!-- Use changing colors for the background color and the texts -->
+                        <a href="#" class="py-1 px-4 my-1 bg-gray-600 rounded-md shadow-2xl text-white">
+                            Programming
+                        </a>
+                        <a href="#" class="py-1 px-4 my-1 bg-purple-600 rounded-md shadow-2xl text-white">
+                            Web
+                        </a>
+                        <a href="#" class="py-1 px-4 my-1 bg-red-600 rounded-md shadow-2xl text-white">
+                            Django
+                        </a>
+                        <a href="#" class="py-1 px-4 my-1 bg-yellow-600 rounded-md shadow-2xl text-white">
+                            Development
+                        </a>
+                        {% for o in "Gabriel Rockson"|make_list %}
+                            <a>{{ o }}</a>
+                        {% endfor %}
+                    </p>
+                </div>
+
+            {% endfor %}
+
+        </div>
+        <div> <!-- A right side section to display lists of the related blog posts on desktop view -->
+
+        </div>
+
+    </div>
+
 {% endblock content %}
