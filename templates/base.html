@@ -9,6 +9,7 @@
 
     <!-- css -->
     <link rel="stylesheet" href="{% static 'css/tailwind/tailwind.css' %}"> <!-- tailwindcss -->
+    <link rel="stylesheet" href="{% static 'fonts/fontawesome/all.min.css' %}" /> <!-- fontawesome -->
 
     <title>{% block title %}{% endblock %}</title>
 </head>
@@ -61,20 +62,28 @@
             > <!-- change the font family-->
             <!-- TODO - add animation to the entrance and leaving states of the navigation-->
                 <div class="flex flex-col text-lg py-5">
-                    <div class="flex flex-col lg:hidden">
+                    <div class="flex flex-col lg:hidden space-y-3">
                         <a href="#">blog</a>
                         <a href="#">projects</a>
                         <a href="#">gotchas</a>
                     </div>
                     
                     <div class="flex flex-col mt-5">
-                        <a href="#" class="lg:hidden">about me</a>
+                        <a href="#" class="lg:hidden text-gray-300"><span class="text-pink-600">-></span> about me</a>
                         <p class="uppercase text-gray-500 font-serif font-bold text-sm pt-2 lg:pt-0 pb-1 text-center">My Networks</>
 
-                        <div class="flex flex-col font-bold font-sans"> <!-- Add icons to the networks-->
-                            <a href="#" class="hover:text-purple-600 font-base transition-colors duration-150">My Github</a>
-                            <a href="#" class="hover:text-purple-600 font-base transition-colors duration-150">My LinkedIn</a>
-                            <a href="#" class="hover:text-purple-600 font-base transition-colors duration-150">My Twitter</a>
+                        <div class="flex flex-col font-bold font-sans space-y-2"> <!-- Add icons to the networks-->
+                            <a href="#" class="hover:text-purple-600 font-base transition-colors duration-150 flex space-x-2">
+                                <span><i class="fab fa-github"></i><span> My Github</span></span>
+                            </a>
+
+                            <a href="#" class="hover:text-purple-600 font-base transition-colors duration-150 flex space-x-2">
+                                <span><i class="fab fa-linkedin"></i><span> My LinkedIn</span></span>
+                            </a>
+
+                            <a href="#" class="hover:text-purple-600 font-base transition-colors duration-150 flex space-x-2">
+                                <span><i class="fab fa-twitter"></i><span> My Twitter</span></span>
+                            </a>
                         </div>
                     </div>
                 </div>
