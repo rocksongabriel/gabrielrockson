@@ -13,44 +13,44 @@
 
     <title>{% block title %}{% endblock %}</title>
 </head>
-<body class="">
+<body class="font-source-sans-pro bg-honeydew">
     
     <!-- Navigation Bar -->
     <!-- TODO - change the font family -->
     {% block navigation %}
     
-    <nav class="bg-white border-b-2 border-gray-50 shadow-xl mb-4">
-        <div class="flex flex-row justify-between px-2 md:px-6 py-3 lg:py-2">
+    <nav class="bg-rich-black border-b-2 border-gray-50 shadow-lg mb-4">
+        <div class="flex flex-row justify-between px-2 md:px-6 py-3 lg:py-2 font-cormorant">
             <!-- logo section -->
             <div class="flex items-center">
-                <a href="#" class="text-2xl font-extrabold text-gray-600">
-                    <span class="text-pink-600">G</span><span class="text-pink-400"><</span><span class="font-light text-gray-500">rockson</span><span class="text-pink-400">/></span>
+                <a href="#" class="text-2xl font-extrabold text-gray-600 font-source-sans-pro">
+                    <span class="text-pink-600">G</span><span class="text-pink-400"><</span><span class="font-light text-gray-50">rockson</span><span class="text-pink-400">/></span>
                 </a>
             </div>
 
             <!-- primary navigation -->
             <!-- TODO - move the repetitive css classes to a component -->
-            <div class="md:flex items-center space-x-3 text-gray-800 text-lg lg:text-xl hidden font-mono"> <!-- hide on mobile-->
-                <a href="/blog" class="hover:text-purple-600 font-base transition-colors duration-150">blog | </a>
-                <a href="#" class="hover:text-purple-600 font-base transition-colors duration-150">projects | </a>
-                <a href="#" class="hover:text-purple-600 font-base transition-colors duration-150">gotchas</a>
+            <div class="md:flex items-center space-x-3 text-gray-800 hidden font-mono"> <!-- hide on mobile-->
+                <a href="/blog" class="nav-link">blog</a><span class="nav-link-separator"> | </span>
+                <a href="#" class="nav-link">projects</a><span class="nav-link-separator"> |</span>
+                <a href="#" class="nav-link">gotchas</a>
             </div>
 
             <!-- secondary navigation -->
             <div class="flex items-center space-x-4 font-mono">
-                <div class="lg:flex hidden space-x-3 text-gray-800 text-lg"> <!-- hide on small screens -->
-                    <a href="#" class="hover:text-purple-600 font-base transition-colors duration-150">about me | </a>
-                    <a href="#" class="hover:text-purple-600 font-base transition-colors duration-150">contact me</a>
+                <div class="lg:flex hidden space-x-3 text-gray-800"> <!-- hide on small screens -->
+                    <a href="#" class="nav-link">about me </a><span class="nav-link-separator"> | </span>
+                    <a href="#" class="nav-link">contact me</a>
                 </div>
                 <a 
                     href="#" 
-                    class="py-2 px-4 bg-blue-600 hover:bg-blue-700 hover:rotate-3 transform hover:scale-105 transition delay-100 duration-100 rounded-md drop-shadow-lg text-white font-bold text-lg"
+                    class="nav-cta"
                 >Hire Me</a>
                 <!-- put mobile menu icon here -->
                 <div class="space-y-1 cursor-pointer" id="menuToggle">
-                    <div class="w-4 h-1 bg-gray-500"></div>
-                    <div class="w-6 h-1 bg-gray-700"></div>
-                    <div class="w-7 h-1 bg-black"></div>
+                    <div class="w-4 h-1 bg-gray-400"></div>
+                    <div class="w-6 h-1 bg-gray-300"></div>
+                    <div class="w-7 h-1 bg-gray-200"></div>
                 </div>
             </div>
         </div>
@@ -73,15 +73,15 @@
                         <p class="uppercase text-gray-500 font-serif font-bold text-sm pt-2 lg:pt-0 pb-1 text-center">My Networks</>
 
                         <div class="flex flex-col font-bold font-sans space-y-2"> <!-- Add icons to the networks-->
-                            <a href="#" class="hover:text-purple-600 font-base transition-colors duration-150 flex space-x-2">
+                            <a href="#" class="nav-link flex space-x-2">
                                 <span><i class="fab fa-github"></i><span> My Github</span></span>
                             </a>
 
-                            <a href="#" class="hover:text-purple-600 font-base transition-colors duration-150 flex space-x-2">
+                            <a href="#" class="nav-link flex space-x-2">
                                 <span><i class="fab fa-linkedin"></i><span> My LinkedIn</span></span>
                             </a>
 
-                            <a href="#" class="hover:text-purple-600 font-base transition-colors duration-150 flex space-x-2">
+                            <a href="#" class="nav-link flex space-x-2">
                                 <span><i class="fab fa-twitter"></i><span> My Twitter</span></span>
                             </a>
                         </div>
