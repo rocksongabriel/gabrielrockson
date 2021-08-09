@@ -1,5 +1,7 @@
 .divio
 /data
+/images
+/original_images
 
 # Django #
 *.log

@@ -6,23 +6,15 @@
 {% block content %}
 
     <!-- mobile design first -->
-    <div class="mx-5 md:mx-10 lg:mx-16 grid grid-cols md:grid-cols-2 lg:grid-cols-6"> <!-- Container for the blog listing-->
-        
-        <div class="order-2 md:order-1 md:col-span-1 lg:col-span-1 p-5"> <!-- A side section to list the blog categories on desktop -->
-            <div class="flex justify-around">
-                <span class="flex space-x-5">
-                    <div class="h-8 w-1 bg-purple-500 self-center"></div> <h1 class="text-center text-gray-400 font-bold text-3xl pt-3">Categories</h1>
-                </span>
-            </div>
-        </div>
+    <div class="mx-5 md:mx-10 lg:mx-20 grid grid-cols md:grid-cols-2 lg:grid-cols-3"> <!-- Container for the blog listing-->
 
-        <div class="order-1 md:order-2 md:col-span-2 lg:col-span-3 my-5"> <!-- The main section to display the blog listings -->
+        <div class="order-1 md:col-span-3 lg:col-span-2 my-5"> <!-- The main section to display the blog listings -->
             {% for o in "123456789"|make_list %}
 
-                <div class="shadow-lg hover:shadow-xl transform hover:scale-105 hover:border-red-500 p-5 transition delay-75 duration-200"> <!-- Blog listing container -->
-                    <a href="#"><h2 class="font-bold text-2xl text-left md:text-justify text-pink-700 hover:text-pink-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, et?</h2></a>
+                <div class="shadow-lg hover:shadow-xl transform hover:scale-105 bg-white mb-8 p-5 transition delay-75 duration-200"> <!-- Blog listing container -->
+                    <a href="#"><h2 class="italic text-caledon-blue hover:text-prussian-blue text-2xl md:text-3xl text-left md:text-justify font-arvo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita incidunt iste ipsum ...</h2></a>
                     <p class="my-2 ml-4">
-                        <span class="text-gray-600">Gabriel Rockson</span> | <span class="text-green-500 font-bold text-sm md:text-basee
+                        <span class="text-gray-600">Gabriel Rockson</span> | <span class="text-imperial-red font-bold text-sm md:text-basee
                         ">8th August, 2021</span>
                     </p>
                     <p class="text-base lg:text-lg text-gray-800">
@@ -46,14 +38,40 @@
             {% endfor %}
 
         </div>
-        <div class="order-3 lg:col-span-2 p-5"> <!-- A right side section to display lists of the related blog posts on desktop view -->
-            <div class="flex justify-around">
-                <span class="flex space-x-5">
-                    <div class="h-8 w-1 bg-purple-500 self-center"></div> <h1 class="text-center text-gray-400 font-bold text-3xl pt-3">Related Blog Posts </h1>
-                </span>
+
+        <div class="order-2 my-5 px-5">
+            <div class="mb-16">
+                <h2 class="text-2xl md:text-3xl font-bold font-arvo text-right text-imperial-red mb-4">Categories</h2>
+
+                <div class="flex flex-wrap text-center lg:ml-5">
+                    {% for category in '123456789'|make_list %}
+                        <a href="#" class="py-1 px-4 my-1 bg-gray-600 rounded-md shadow-2xl text-white">
+                            Programming
+                        </a>
+                        <a href="#" class="py-1 px-4 my-1 mx-2 bg-purple-600 rounded-md shadow-2xl text-white">
+                            Web
+                        </a>
+                        <a href="#" class="py-1 px-4 my-1 mx-2 bg-red-600 rounded-md shadow-2xl text-white">
+                            Django
+                        </a>
+                        <a href="#" class="py-1 px-4 my-1 mx-2 bg-yellow-600 rounded-md shadow-2xl text-white">
+                            Development
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div>
+                <h2 class="text-2xl md:text-3xl font-bold font-arvo text-right text-imperial-red mb-4">Newest Blog Posts</h2>
+
+                {% for lastest_post in '12345678'|make_list %}
+                    <div class="px-5 py-4 mb-5 bg-gray-200">
+                        <a href="#" class="text-xl pb-2 text-prussian-blue font-bold">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium ...</a> <!-- 9 characters -->
+                        <p class="text-gray-700 text-lg py-2">Author: Gabriel Rockson</p>
+                        <a href="#" class="text-blue-500">Read This Post</a>
+                    </div>
+                {% endfor %}
             </div>
         </div>
-
     </div>
 
 {% endblock content %}
