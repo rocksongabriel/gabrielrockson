@@ -7,6 +7,7 @@ from wagtail.admin.edit_handlers import FieldPanel, FieldRowPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from django.utils.translation import gettext_lazy as _
 from wagtail.snippets.models import register_snippet
+from django.utils import timezone
 
 
 # Snippets
@@ -31,6 +32,7 @@ class BlogAuthor(models.Model):
         related_name="+"
     )
     description = RichTextField(_("Description of Author"), help_text="Enter a brief description about the author")
+    date_joined = models.DateField(_("Date Joined"), help_text="Which date did this author join the team?", default=timezone.now)
     twitter = models.URLField("Twitter Handle", help_text="Input the the link to the author's twitter handle", null=False, blank=False)
     email = models.EmailField("Email Address", help_text="Enter the email address of the author", max_length=500)
 
@@ -39,6 +41,7 @@ class BlogAuthor(models.Model):
         FieldPanel("full_name"),
         ImageChooserPanel("avatar"),
         FieldPanel("description"),
+        FieldPanel("date_joined"),
         FieldRowPanel([
             FieldPanel("twitter"),
             FieldPanel("email")
@@ -120,3 +123,9 @@ class BlogIndexPage(Page):
 #         ImageChooserPanel("image"),
 #         FieldPanel("quote"),
 #     ]
+
+# TODO 
+"""
+todo - fix the image uploading issue
+
+"""
