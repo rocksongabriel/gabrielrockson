@@ -1,14 +1,17 @@
 from django.db import models
 from django.db.models.fields import Field
-
-from wagtail.core.models import Page
-from wagtail.core.fields import RichTextField
-from wagtail.admin.edit_handlers import FieldPanel, FieldRowPanel
-from wagtail.images.edit_handlers import ImageChooserPanel
-from django.utils.translation import gettext_lazy as _
-from wagtail.snippets.models import register_snippet
 from django.utils import timezone
 from django.utils.text import slugify
+from django.utils.translation import gettext_lazy as _
+from modelcluster.contrib.taggit import ClusterTaggableManager
+from modelcluster.fields import ParentalKey
+from taggit.models import TaggedItemBase
+from wagtail.admin.edit_handlers import FieldPanel, FieldRowPanel, MultiFieldPanel
+from wagtail.core.fields import RichTextField
+from wagtail.core.models import Page
+from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.snippets.edit_handlers import SnippetChooserPanel
+from wagtail.snippets.models import register_snippet
 
 
 # ------------------------------------------------------------- SNIPPETS ----------------------------------------------------------------
@@ -95,46 +98,65 @@ class BlogIndexPage(Page):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
         context["categories"] = BlogCategory.objects.all()
+        # TODO - add latest blog posts context
         return context
 
-# class BlogDetailPage(Page):
 
-#     template = "blog/blog-detail.html"
-#     parent_page_types = ["blog.BlogIndexPage"]
-
-#     """
-#         - blog title
-#         - featured_image
-#         - author *
-#         - date published
-#         - upvotes *
-#         - times read *
-#         - read time *
-#         - blog category
-#         - blog tags
-#         - programming quote
-#         - main content
-#             - titles
-#             - paragraphs
-#             - code blocks
-#             - images
-
-
-#     """
-#     image = models.ForeignKey(
-#         _("Featured Image"),
-#         "wagtailimages.Image",
-#         null=False,
-#         blank=False,
-#         related_name="+",
-#         help_text="Select an image to use on the post's page"
-#     )
-#     date_published = models.DateTimeField(auto_now_add=True)
-#     quote = models.TextField(_("A Programming Quote"), help_text="Enter some programming quote", blank=False, null=False)
+class BlogPageTag(TaggedItemBase):
+    content_object = ParentalKey("blog.BlogDetailPage", on_delete=models.CASCADE, related_name="tagged_items")
 
 
 
-#     content_panels = Page.content_panels + [
-#         ImageChooserPanel("image"),
-#         FieldPanel("quote"),
-#     ]
+class BlogDetailPage(Page):
+    """Blog Detail Page"""
+
+    template = "blog/blog-detail.html"
+    parent_page_types = ["blog.BlogIndexPage"]
+
+    """
+        - upvotes *
+        - times read *
+        - read time *
+        - blog tags
+        - main content
+            - titles
+            - paragraphs
+            - code blocks
+            - images
+
+
+    """
+    author = models.ForeignKey(
+        "blog.BlogAuthor",
+        on_delete=models.PROTECT,
+        related_name="+",
+        help_text="Select the author of this blog post"
+    )
+    image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=False,
+        related_name="+",
+        on_delete=models.SET_NULL,
+        help_text="Select an image to use on the post's page"
+    )
+    date_published = models.DateTimeField(auto_now_add=True)
+    quote = models.TextField(_("A Programming Quote"), help_text="Enter some programming quote", blank=False, null=False)
+    category = models.ForeignKey(
+        "blog.BlogCategory",
+        on_delete=models.PROTECT,
+        related_name="+",
+        help_text="Select the category of this blog post"
+    )
+    tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
+
+
+    content_panels = Page.content_panels + [
+        ImageChooserPanel("image"),
+        FieldRowPanel([
+            SnippetChooserPanel("author"),
+            SnippetChooserPanel("category")
+        ]),
+        FieldPanel("tags"),
+        FieldPanel("quote"),
+    ]
