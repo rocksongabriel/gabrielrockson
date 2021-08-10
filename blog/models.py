@@ -25,8 +25,8 @@ class BlogAuthor(models.Model):
     full_name = models.CharField(_("Full Name"), max_length=50, null=False, blank=False, help_text="Enter the full name of the author")
     avatar = models.ForeignKey(
         "wagtailimages.Image",
-        on_delete=models.CASCADE,
-        null=False,
+        on_delete=models.SET_NULL,
+        null=True,
         blank=False,
         help_text="Upload an image of the author",
         related_name="+"
