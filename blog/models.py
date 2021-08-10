@@ -8,20 +8,14 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from django.utils.translation import gettext_lazy as _
 from wagtail.snippets.models import register_snippet
 from django.utils import timezone
+from django.utils.text import slugify
 
 
-# Snippets
+# ------------------------------------------------------------- SNIPPETS ----------------------------------------------------------------
 @register_snippet
 class BlogAuthor(models.Model):
-    
-    """
-        - full name
-        - avatar 
-        - description
-        - date joined
-        - twitter
-        - email
-    """
+    """Snippet for a Blog Author"""
+
     full_name = models.CharField(_("Full Name"), max_length=50, null=False, blank=False, help_text="Enter the full name of the author")
     avatar = models.ForeignKey(
         "wagtailimages.Image",
@@ -51,19 +45,36 @@ class BlogAuthor(models.Model):
     def __str__(self):
         return self.full_name
 
-
     class Meta:
         verbose_name = "Blog Author"
         verbose_name_plural = "Blog Authors"
 
 
-# class BlogCategory(models.Model):
+@register_snippet
+class BlogCategory(models.Model):
+    """Snippet for a Blog Category"""
+
+    name = models.CharField(_("Name of Category"), max_length=100, help_text="Enter the name of the Category", null=False, blank=False)
+    slug = models.SlugField(_("Slug"), max_length=100, null=False, blank=False)
+
+    panels = [
+        FieldPanel("name")
+    ]
+
+    def __str__(self):
+        return self.name
+
+    def save(self, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name) # slugify the name field
+        return super().save(kwargs)
     
-#     class Meta:
-#         verbose_name = "Blog Category"
-#         verbose_name_plural = "Blog Categories"
+    class Meta:
+        verbose_name = "Blog Category"
+        verbose_name_plural = "Blog Categories"
 
 
+# ----------------------------------------------- PAGES ------------------------------------------------------------------------
 class BlogIndexPage(Page):
     """
         Page to list all blog posts
@@ -123,9 +134,3 @@ class BlogIndexPage(Page):
 #         ImageChooserPanel("image"),
 #         FieldPanel("quote"),
 #     ]
-
-# TODO 
-"""
-todo - fix the image uploading issue
-
-"""
