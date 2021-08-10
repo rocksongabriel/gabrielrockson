@@ -7,9 +7,9 @@
 {% block content %}
 
     <!-- mobile design first -->
-    <div class="mx-5 md:mx-10 lg:mx-20 grid grid-cols md:grid-cols-2 lg:grid-cols-3"> <!-- Container for the blog listing-->
+    <div class="mx-5 md:mx-10 lg:mx-16 grid grid-cols  lg:grid-cols-3"> <!-- Container for the blog listing-->
 
-        <div class="order-1 md:col-span-3 lg:col-span-2 my-5"> <!-- The main section to display the blog listings -->
+        <div class="lg:col-span-2 my-5"> <!-- The main section to display the blog listings -->
 
             {% if tag %}
                 <h1 class="text-2xl md:text-3xl font-bold font-arvo text-center text-imperial-red mb-4">All {{ tag }} Posts</h1>
@@ -50,8 +50,9 @@
 
         </div>
 
-        <div class="order-2 my-5 px-5">
-            <div class="mb-16">
+        <div class="my-5 lg:ml-4 lg:px-5 grid md:grid-cols-3 lg:grid-cols-1">
+
+            <div class="mb-16 lg:mb-16 md:mb-0 md:col-span-1">
                 <h2 class="text-2xl md:text-3xl font-bold font-arvo text-center text-imperial-red mb-4">Categories</h2>
 
                 <div class="flex flex-wrap text-center lg:ml-5">
@@ -63,14 +64,15 @@
                     {% endfor %}
                 </div>
             </div>
-            <div>
+
+            <div class="md:col-span-2">
                 <h2 class="text-2xl md:text-3xl font-bold font-arvo text-center text-imperial-red mb-4">Newest Blog Posts</h2>
 
-                {% for lastest_post in '12345678'|make_list %}
-                    <div class="px-5 py-4 mb-5 bg-gray-200">
-                        <a href="#" class="text-xl pb-2 text-prussian-blue font-bold">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium ...</a> <!-- 9 characters -->
-                        <p class="text-gray-700 text-lg py-2">Author: Gabriel Rockson</p>
-                        <a href="#" class="text-blue-500">Read This Post</a>
+                {% for latest_post in latest_posts %}
+                    <div class="px-5 py-4 mb-5 shadow-2xl">
+                        <a href="{% pageurl latest_post %}" class="text-xl pb-2 text-prussian-blue font-bold">{{ latest_post.title|truncatewords:9 }}</a> <!-- 9 characters -->
+                        <p class="text-gray-800 text-lg py-2 font-bold">Author: {{ latest_post.author.full_name }}</p>
+                        <a href="{% pageurl latest_post %}" class="text-blue-500">Read This Post</a>
                     </div>
                 {% endfor %}
             </div>
