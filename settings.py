@@ -11,6 +11,8 @@
 # Addons view in your project's dashboard. See also the addons directory in 
 # this project, and the INSTALLED_ADDONS section in requirements.in.
 
+import os
+
 INSTALLED_ADDONS = [
     # Important: Items listed inside the next block are auto-generated.
     # Manual changes will be overwritten.
@@ -57,6 +59,11 @@ INSTALLED_APPS.extend([
 # To see the settings that have been applied, use the Django diffsettings 
 # management command. 
 # See https://docs.divio.com/en/latest/how-to/configure-settings.html#list
+
+# Media settings
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join('/data/media/')
+
 
 AUTH_USER_MODEL = "users.User"
 
