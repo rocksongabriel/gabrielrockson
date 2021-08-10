@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static wagtailcore_tags %}
+
+{% block title %}{{ page.title }}{% endblock %}
+
+
+{% block content %}
+<div>
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.author }}</p>
+
+    <p>{{ page.tags.all }}</p>
+</div>
+{% endblock content %}
+
+

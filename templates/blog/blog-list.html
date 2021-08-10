@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static wagtailcore_tags %}
 
 {% block title %}{{ page.title }}{% endblock %}
 
@@ -9,30 +10,40 @@
     <div class="mx-5 md:mx-10 lg:mx-20 grid grid-cols md:grid-cols-2 lg:grid-cols-3"> <!-- Container for the blog listing-->
 
         <div class="order-1 md:col-span-3 lg:col-span-2 my-5"> <!-- The main section to display the blog listings -->
-            {% for o in "123456789"|make_list %}
+
+            {% if tag %}
+                <h1 class="text-2xl md:text-3xl font-bold font-arvo text-center text-imperial-red mb-4">All {{ tag }} Posts</h1>
+            {% else %}
+                <h1 class="text-2xl md:text-3xl font-bold font-arvo text-center text-imperial-red mb-4">All Posts</h1>
+            {% endif %}
+
+            
+
+            {% for post in posts %}
 
                 <div class="shadow-lg hover:shadow-xl transform hover:scale-105 bg-white mb-8 p-5 transition delay-75 duration-200"> <!-- Blog listing container -->
-                    <a href="#"><h2 class="italic text-caledon-blue hover:text-prussian-blue text-2xl md:text-3xl text-left md:text-justify font-arvo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita incidunt iste ipsum ...</h2></a>
-                    <p class="my-2 ml-4">
-                        <span class="text-gray-600">Gabriel Rockson</span> | <span class="text-imperial-red font-bold text-sm md:text-basee
-                        ">8th August, 2021</span>
+                    <a href="{% pageurl post %}">
+                        <h2 class="italic text-caledon-blue hover:text-prussian-blue text-2xl md:text-3xl text-left md:text-justify font-arvo">
+                            {{ post.specific.title|truncatewords:12 }}
+                        </h2>
+                    </a>
+                    <p class="my-2 ml-1 md:ml-5">
+                        <!-- TODO - fix the author's name not rendering -->
+                        <span class="text-gray-600">{{ post.author }}</span> | <span class="hidden md:inline">Published: </span> <span class="text-imperial-red font-bold text-sm md:text-base
+                        ">{{ post.date_published }}</span>
                     </p>
                     <p class="text-base lg:text-lg text-gray-800">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident praesentium tempore nemo voluptatum maxime obcaecati explicabo, laboriosam vel ex esse enim fuga doloribus aliquid illum ... <a href="#" class="text-blue-500 hover:underline">continue reading <span><i class="fas fa-arrow-right    "></i></span> </a>
+                        {% include_block post.specific.content|truncatewords_html:50 %} 
+                        <a href="{% pageurl post %}" class="text-blue-500 hover:underline">continue reading <span><i class="fas fa-arrow-right text-sm animate-pulse text-imperial-red"></i></span> </a>
                     </p>
                     <p class="flex flex-wrap space-x-4"> <!-- Use changing colors for the background color and the texts -->
-                        <a href="#" class="py-1 px-4 my-1 bg-gray-600 rounded-md shadow-2xl text-white">
-                            Programming
-                        </a>
-                        <a href="#" class="py-1 px-4 my-1 bg-purple-600 rounded-md shadow-2xl text-white">
-                            Web
-                        </a>
-                        <a href="#" class="py-1 px-4 my-1 bg-red-600 rounded-md shadow-2xl text-white">
-                            Django
-                        </a>
-                        <a href="#" class="py-1 px-4 my-1 bg-yellow-600 rounded-md shadow-2xl text-white">
-                            Development
-                        </a>
+                        {% if post.tags.all.count %}
+                            {% for tag in post.tags.all %}
+                                <a href="{% pageurl page %}?tag={{ tag }}" class="py-1 px-4 my-2 mx-2 tag rounded-md shadow-2xl text-white"> <!-- Make the colors random-->
+                                    {{ tag.name }}
+                                </a>
+                            {% endfor %}
+                        {% endif %}
                     </p>
                 </div>
             {% endfor %}
@@ -73,12 +84,18 @@
 
 <script>
     let categories = document.getElementsByClassName("category");
+    let tags = document.getElementsByClassName("tag");
 
-    let colors = ["bg-gray-600", "bg-red-600", "bg-purple-600", "bg-pink-600"]
+    let colors = ["bg-gray-600", "bg-red-600", "bg-purple-600", "bg-pink-600", "bg-green-600", "bg-blue-600", "bg-purple-800", "bg-green-800", "bg-blue-800"]
     
     for (category of categories) {
         category.classList.add(colors[Math.floor(Math.random()*colors.length)]);
     }
+
+    for (tag of tags) {
+        tag.classList.add(colors[Math.floor(Math.random()*colors.length)])
+    }
+    
 </script>
 
 {% endblock extra_js %}
