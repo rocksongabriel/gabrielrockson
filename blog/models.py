@@ -92,6 +92,10 @@ class BlogIndexPage(Page):
         FieldPanel("intro", classname="full")
     ]
 
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        context["categories"] = BlogCategory.objects.all()
+        return context
 
 # class BlogDetailPage(Page):
 
