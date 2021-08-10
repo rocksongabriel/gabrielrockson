@@ -101,6 +101,16 @@ class BlogIndexPage(Page):
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
         context["categories"] = BlogCategory.objects.all()
+
+        posts = BlogDetailPage.objects.child_of(self).live()
+
+        # Filter the blog posts by tags
+        tag = request.GET.get("tag")
+        if tag:
+            context["tag"] = tag
+            posts = BlogDetailPage.objects.filter(tags__name=tag)
+
+        context["posts"] = posts
         # TODO - add latest blog posts context
         return context
 
@@ -162,10 +172,12 @@ class BlogDetailPage(Page):
 
     content_panels = Page.content_panels + [
         ImageChooserPanel("image"),
-        FieldRowPanel([
-            SnippetChooserPanel("author"),
-            SnippetChooserPanel("category")
-        ]),
+        MultiFieldPanel([
+            FieldRowPanel([
+                SnippetChooserPanel("author"),
+                SnippetChooserPanel("category")
+            ]),
+        ], heading="Author and Category"),
         FieldPanel("tags"),
         FieldPanel("quote"),
         StreamFieldPanel("content"),
