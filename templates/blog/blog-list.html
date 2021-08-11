@@ -80,9 +80,9 @@
 
                 {% for latest_post in latest_posts %}
                     <div class="px-5 py-4 mb-5 shadow-2xl">
-                        <a href="{% pageurl latest_post %}" class="text-xl pb-2 text-prussian-blue font-bold">{{ latest_post.title|truncatewords:9 }}</a> <!-- 9 characters -->
-                        <p class="text-gray-800 text-lg py-2 font-bold">Author: {{ latest_post.author.full_name }}</p>
-                        <a href="{% pageurl latest_post %}" class="text-blue-500">Read This Post</a>
+                        <a href="{% pageurl latest_post %}" class="text-xl pb-2 text-prussian-blue hover:text-caledon-blue font-bold">{{ latest_post.title|truncatewords:9 }}</a> <!-- 9 characters -->
+                        <p class="my-2"><span class="font-bold text-gray-800 text-xl">Author: </span><span class="text-imperial-red font-carmorant">{{ latest_post.author.full_name }}</span></p>
+                        <a href="{% pageurl latest_post %}" class="text-blue-500 font-bold hover:text-blue-600">Read This Post</a>
                     </div>
                 {% endfor %}
             </div>

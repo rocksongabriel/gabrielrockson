@@ -69,7 +69,16 @@
             <!-- Other Posts by Author -->
             <div class="my-10">
                 <h1 class="text-2xl md:text-3xl font-bold font-arvo text-center text-imperial-red mb-4">Other Posts by Author</h1>
-                Box 3
+
+                {% for post in posts_from_author %}
+                    <div class="px-5 py-4 mb-5 shadow-2xl">
+                        <a href="{% pageurl post %}" class="text-xl pb-2 text-prussian-blue hover:text-caledon-blue font-bold">{{ post.title|truncatewords:20 }}</a><br />
+                        <p class="my-2"><span class="font-bold text-gray-800 text-xl">Published: </span><span class="text-imperial-red font-carmorant">{{ page.date_published }}</span></p>
+                        <a href="{% pageurl post %}" class="text-blue-500 font-bold hover:text-blue-600">Read This Post</a>
+                    </div>
+                {% empty %}
+                    <div class="text-2xl text-center text-black bg-red-600 my-5 py-4 font-bold">Sorry, this author has no other posts</div>
+                {% endfor %}
             </div>
         </div>
     </div>
