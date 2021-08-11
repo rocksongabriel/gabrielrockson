@@ -131,7 +131,6 @@ class BlogDetailPage(Page):
         - upvotes *
         - times read *
         - read time *
-        - blog tags
         - main content
             - titles
             - paragraphs

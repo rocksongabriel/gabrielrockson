@@ -1,15 +1,61 @@
 {% extends 'base.html' %}
-{% load static wagtailcore_tags %}
+{% load static wagtailcore_tags wagtailimages_tags %}
 
 {% block title %}{{ page.title }}{% endblock %}
 
 
 {% block content %}
-<div>
-    <h1>{{ page.title }}</h1>
-    <p>{{ page.author }}</p>
+<div class="px-4">
+    
+    <!-- Featured Image -->
+    <div>
+        {% image page.image width-800 format-jpeg as mobile_img  %}
+        {% image page.image width-1200 height-600 format-jpeg as desktop_img %}
+        <img src="{{ mobile_img.url }}" width="{{ mobile_img.width }}" height="{{ mobile_img.height }}" alt="{{ mobile_img.alt }}" class="lg:hidden shadow-md">
+        <img src="{{ desktop_img.url }}" height="{{ desktop_img.height }}" alt="{{ desktop_img.alt }}" class="hidden lg:flex">
 
-    <p>{{ page.tags.all }}</p>
+    </div>
+
+    <!-- Title and Quote -->
+    <div>
+        <h1 class="text-3xl font-bold text-center py-2">{{ page.title }}</h1>
+        <blockquote class="text-lg py-3 px-8 italic font-cardo text-gray-700">
+            <span class="text-2xl text-red-600">"</span>{{ page.quote }}<span class="text-2xl text-red-600">"</span>
+        </blockquote>
+    </div>
+
+    <!-- Author, Date Published, Category-->
+    <div class="text-lg pb-3">
+        <p><span class="font-bold text-gray-800">Author: </span><span class="text-imperial-red font-carmorant">{{ page.author.full_name }}</span></p>
+        <p><span class="font-bold text-gray-800">Date Published: </span><span class="text-imperial-red font-carmorant">{{ page.date_published }}</span></p>
+        <p><span class="font-bold text-gray-800">Category: </span><span class="text-imperial-red font-carmorant">{{ page.category }}</span></p>
+    </div>
+
+    <!-- Main Content -->
+    <div>
+        {% for block in page.content %}
+            {% if block.block_type == 'heading' %}
+                <h2 class="text-gray-900 font-semibold font-source-sans-pro text-2xl py-5">{{ block.value }}</h2>
+            {% elif block.block_type == 'text' %}
+                <p class="text-lg pb-5">{{ block.value }}</p>
+            {% elif block.block_type == 'paragraph' %}
+                {{ block.value }} <!-- TODO - add styling to all components of this particular value-->
+            <!-- TODO - render the image block -->
+            {% elif block.block_type == 'image' %}
+                {% image block.value width-800 format-jpeg as mobile_img  %}
+                {% image block.value width-1200 height-600 format-jpeg as desktop_img %}
+                <img src="{{ mobile_img.url }}" width="{{ mobile_img.width }}" height="{{ mobile_img.height }}" alt="{{ mobile_img.alt }}" class="lg:hidden shadow-md my-10">
+                <img src="{{ desktop_img.url }}" height="{{ desktop_img.height }}" alt="{{ desktop_img.alt }}" class="hidden lg:flex my-10">
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <!-- Related Blog Posts -->
+    <div></div>
+
+    <!-- Other Posts by Author -->
+    <div></div>
+
 </div>
 {% endblock content %}
 
