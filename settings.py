@@ -54,7 +54,7 @@ INSTALLED_APPS.extend([
     # 3rd party applications
     "django_extensions",
     "livereload",
-    'wagtailcodeblock',
+    # 'wagtailcodeblock',
 ])
 
 # To see the settings that have been applied, use the Django diffsettings 

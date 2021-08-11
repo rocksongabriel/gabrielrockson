@@ -10,6 +10,7 @@ pytest-django = "==4.4.0"
 pytest-factoryboy = "==2.1.0"
 pytest-mock = "==3.6.1"
 pytest-xdist = "==2.3.0"
+wagtailcodeblock = "*"
 
 [dev-packages]
 
