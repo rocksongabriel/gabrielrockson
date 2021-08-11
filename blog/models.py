@@ -10,7 +10,7 @@ from wagtail.admin.edit_handlers import (FieldPanel, FieldRowPanel,
                                          MultiFieldPanel, StreamFieldPanel)
 from wagtail.core import blocks
 from wagtail.core.fields import RichTextField, StreamField
-from wagtail.core.models import Page
+from wagtail.core.models import Orderable, Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
@@ -127,6 +127,21 @@ class BlogIndexPage(Page):
 class BlogPageTag(TaggedItemBase):
     content_object = ParentalKey("blog.BlogDetailPage", on_delete=models.CASCADE, related_name="tagged_items")
 
+
+class RelatedBlogPost(Orderable):
+    """Model for related blog posts"""
+    page = ParentalKey("blog.BlogDetailPage", related_name="related_posts")
+    blog_post = models.ForeignKey(
+        "blog.BlogDetailPage",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+"
+    )
+
+    panels = [
+        ImageChooserPanel("blog_post")
+    ]
 
 
 class BlogDetailPage(Page):
