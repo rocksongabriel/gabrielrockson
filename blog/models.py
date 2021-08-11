@@ -106,9 +106,15 @@ class BlogIndexPage(Page):
 
         # Filter the blog posts by tags
         tag = request.GET.get("tag")
+        # Filter by categories
+        category = request.GET.get("category")
+
         if tag:
             context["tag"] = tag
             posts = BlogDetailPage.objects.filter(tags__name=tag)
+        elif category:
+            context["category"] = category
+            posts = BlogDetailPage.objects.filter(category__name=category)
 
         context["posts"] = posts
         context["latest_posts"] = BlogDetailPage.objects.all().order_by("-date_published")
