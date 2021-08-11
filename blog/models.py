@@ -119,7 +119,7 @@ class BlogIndexPage(Page):
             posts = BlogDetailPage.objects.filter(category__name=category)
 
         context["posts"] = posts
-        context["latest_posts"] = BlogDetailPage.objects.all().order_by("-date_published")
+        context["latest_posts"] = BlogDetailPage.objects.all().order_by("-date_published")[:10]
         # TODO - add latest blog posts context
         return context
 
