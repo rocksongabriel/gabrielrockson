@@ -10,6 +10,7 @@
     <!-- css -->
     <link rel="stylesheet" href="{% static 'css/tailwind/tailwind.css' %}"> <!-- tailwindcss -->
     <link rel="stylesheet" href="{% static 'fonts/fontawesome/all.min.css' %}" /> <!-- fontawesome -->
+    {% block extra_css %}{% endblock extra_css %}
 
     <title>{% block title %}{% endblock %}</title>
 </head>

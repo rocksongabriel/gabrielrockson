@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load static wagtailcore_tags wagtailimages_tags %}
 
+{% block extra_css %} <link rel="stylesheet" href="{% static 'css/prism/prism.css' %}"> {% endblock extra_css %}
+
 {% block title %}{{ page.title }}{% endblock %}
 
 
@@ -39,17 +41,19 @@
             <div>
                 {% for block in page.content %}
                     {% if block.block_type == 'heading' %}
-                        <h2 class="text-gray-900 font-semibold font-source-sans-pro text-2xl py-5">{{ block.value }}</h2>
+                        <h2 class="text-gray-900 font-semibold font-source-sans-pro text-3xl py-5">{{ block.value }}</h2>
                     {% elif block.block_type == 'text' %}
                         <p class="text-lg pb-5">{{ block.value }}</p>
                     {% elif block.block_type == 'paragraph' %}
-                        <div class="text-lg">{{ block.value }}</div> <!-- TODO - add styling to all components of this particular value-->
+                        {% include_block block %} <!-- TODO - add styling to all components of this particular value-->
                     <!-- TODO - render the image block -->
                     {% elif block.block_type == 'image' %}
                         {% image block.value width-800 format-jpeg as mobile_img  %}
                         {% image block.value width-1200 height-600 format-jpeg as desktop_img %}
-                        <img src="{{ mobile_img.url }}" width="{{ mobile_img.width }}" height="{{ mobile_img.height }}" alt="{{ mobile_img.alt }}" class="lg:hidden shadow-md my-10">
-                        <img src="{{ desktop_img.url }}" height="{{ desktop_img.height }}" alt="{{ desktop_img.alt }}" class="hidden lg:flex my-10">
+                        <img src="{{ mobile_img.url }}" width="{{ mobile_img.width }}" height="{{ mobile_img.height }}" alt="{{ mobile_img.alt }}" class="lg:hidden shadow-md mb-10">
+                        <img src="{{ desktop_img.url }}" height="{{ desktop_img.height }}" alt="{{ desktop_img.alt }}" class="hidden lg:flex mb-10">
+                    {% elif block.block_type == 'code' %}
+                        {% include_block block %}
                     {% endif %}
                 {% endfor %}
             </div>
@@ -73,3 +77,4 @@
 {% endblock content %}
 
 
+{% block extra_js %} <script src="{% static 'js/prism.js' %}"></script> {% endblock extra_js %}
