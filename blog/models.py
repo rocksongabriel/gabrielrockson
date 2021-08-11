@@ -139,13 +139,6 @@ class BlogDetailPage(Page):
         - upvotes *
         - times read *
         - read time *
-        - main content
-            - titles
-            - paragraphs
-            - code blocks
-            - images
-
-
     """
     author = models.ForeignKey(
         "blog.BlogAuthor",
@@ -182,6 +175,10 @@ class BlogDetailPage(Page):
         ("image", ImageChooserBlock()),
     ])
 
+    def get_context(self, request, *args, **kwargs):
+        context =  super().get_context(request, *args, **kwargs)
+        context["posts_from_author"] = BlogDetailPage.objects.live().filter(author__full_name=self.author.full_name).exclude(title=self.title)[:5]
+        return context
 
     content_panels = Page.content_panels + [
         ImageChooserPanel("image"),
