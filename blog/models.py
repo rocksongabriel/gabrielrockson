@@ -15,6 +15,8 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
 from wagtail.images.blocks import ImageChooserBlock
+# from wagtailcodeblock.blocks import CodeBlock
+from .blocks import CodeBlock
 
 
 # ------------------------------------------------------------- SNIPPETS ----------------------------------------------------------------
@@ -171,7 +173,12 @@ class BlogDetailPage(Page):
     content = StreamField([
         ("heading", blocks.CharBlock()),
         ("text", blocks.TextBlock()),
-        ("paragraph", blocks.RichTextBlock()),
+        ("paragraph", blocks.RichTextBlock(
+            template="blocks/rich-text-block.html",
+            features=['h1', 'h2', 'h3', 'h4', 'h5', 'bold', 'italic', 'ol', 'ul', 'hr', 'link', 'image', 'code', 'blockquote']
+            )
+        ),
+        ("code", CodeBlock()),
         ("image", ImageChooserBlock()),
     ])
 
