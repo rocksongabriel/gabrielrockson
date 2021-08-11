@@ -61,10 +61,21 @@
 
         <div class="class="lg:mx-5 lg:col-span-1">
             <!-- Related Blog Posts -->
-            <div class="my-10 lg:my-0 lg:mb-16">
-                <h1 class="text-2xl md:text-3xl font-bold font-arvo text-center text-imperial-red mb-4">Related Posts</h1>
-                Box 2
-            </div>
+            {% if self.related_posts.all %}
+                <div class="my-10 lg:my-0 lg:mb-16">
+                    <h1 class="text-2xl md:text-3xl font-bold font-arvo text-center text-imperial-red mb-4">Related Posts</h1>
+                    
+                    {% for post in self.related_posts.all %}
+                        <div class="px-5 py-4 mb-5 shadow-2xl">
+                            <a href="{% pageurl post.blog_post %}" class="text-xl pb-2 text-prussian-blue hover:text-caledon-blue font-bold">{{ post.blog_post.title|truncatewords:20 }}</a><br />
+                            <p class="my-2"><span class="font-bold text-gray-800 text-xl">Published: </span><span class="text-imperial-red font-carmorant">{{ post.blog_post.date_published }}</span></p>
+                            <a href="{% pageurl post.blog_post %}" class="text-blue-500 font-bold hover:text-blue-600">Read This Post</a>
+                        </div>
+                    {% empty %}
+                        <div class="text-2xl text-center text-black bg-red-600 my-5 py-4 font-bold">Sorry, this author has no other posts</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
 
             <!-- Other Posts by Author -->
             <div class="my-10">

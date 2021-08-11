@@ -6,8 +6,8 @@ from django.utils.translation import gettext_lazy as _
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
 from taggit.models import TaggedItemBase
-from wagtail.admin.edit_handlers import (FieldPanel, FieldRowPanel,
-                                         MultiFieldPanel, StreamFieldPanel)
+from wagtail.admin.edit_handlers import (FieldPanel, FieldRowPanel, InlinePanel,
+                                         MultiFieldPanel, PageChooserPanel, StreamFieldPanel)
 from wagtail.core import blocks
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Orderable, Page
@@ -140,7 +140,7 @@ class RelatedBlogPost(Orderable):
     )
 
     panels = [
-        ImageChooserPanel("blog_post")
+        PageChooserPanel("blog_post")
     ]
 
 
@@ -205,7 +205,12 @@ class BlogDetailPage(Page):
         ], heading="Author and Category"),
         FieldPanel("tags"),
         FieldPanel("quote"),
-        StreamFieldPanel("content"),
+        MultiFieldPanel([
+            StreamFieldPanel("content"),
+        ], heading="Blog Content", classname="collapse collapsed"),
+        MultiFieldPanel([
+            InlinePanel("related_posts", max_num=10, min_num=1, heading="Related Post")
+        ], heading="Related Blog Posts")
     ]
 
 """
