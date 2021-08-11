@@ -7,7 +7,7 @@
 
 
 {% block content %}
-<div class="mx-5 md:mx-10 lg:mx-16">
+<div class="mx-5 md:mx-10 lg:mx-16 my-8 md:my-10 lg:my-16">
     
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
         <div class="lg:col-span-2">
@@ -20,7 +20,7 @@
 
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-6 gap-8">
+            <div class="grid grid-cols-1 lg:grid-cols-6 gap-5">
                 <!-- Title and Quote -->
                 <div class="lg:col-span-4 lg:order-2 pt-4 pb-2 lg:py-6">
                     <h1 class="text-3xl lg:text-4xl font-bold text-center">{{ page.title }}</h1>
@@ -30,10 +30,10 @@
                 </div>
 
                 <!-- Author, Date Published, Category-->
-                <div class="text-lg pb-3 lg:col-span-2 lg:order-1 lg:py-6 lg:space-y-3">
-                    <p><span class="font-bold text-gray-800">Author: </span><span class="text-imperial-red font-carmorant">{{ page.author.full_name }}</span></p>
-                    <p><span class="font-bold text-gray-800">Date Published: </span><span class="text-imperial-red font-carmorant">{{ page.date_published|date:"d M Y" }}</span></p>
-                    <p><span class="font-bold text-gray-800">Category: </span><span class="text-imperial-red font-carmorant">{{ page.category }}</span></p>
+                <div class="text-lg pb-3 lg:col-span-2 lg:order-1 lg:py-6 lg:space-y-3 lg:bg-gray-800 lg:my-10 px-5">
+                    <p><span class="font-bold text-gray-800 text-xl lg:text-gray-50">Author: </span><span class="text-imperial-red font-carmorant">{{ page.author.full_name }}</span></p>
+                    <p><span class="font-bold text-gray-800 text-xl lg:text-gray-50">Published: </span><span class="text-imperial-red font-carmorant"><br class="hidden lg:inline"/>{{ page.date_published }}</span></p>
+                    <p><span class="font-bold text-gray-800 text-xl lg:text-gray-50">Category: </span><span class="text-imperial-red font-carmorant">{{ page.category }}</span></p>
                 </div>
             </div>
 

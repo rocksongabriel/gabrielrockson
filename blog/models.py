@@ -195,3 +195,9 @@ class BlogDetailPage(Page):
         FieldPanel("quote"),
         StreamFieldPanel("content"),
     ]
+
+"""
+TODO
+todo - add related blog posts ( at most 5 of them)
+todo - add other posts by author ( at most 5 of them )
+"""
