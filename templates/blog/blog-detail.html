@@ -41,9 +41,9 @@
             <div>
                 {% for block in page.content %}
                     {% if block.block_type == 'heading' %}
-                        <h2 class="text-gray-900 font-semibold font-source-sans-pro text-3xl py-5">{{ block.value }}</h2>
+                        <h2 class="text-gray-900 font-bold font-source-sans-pro text-3xl py-5">{{ block.value }}</h2>
                     {% elif block.block_type == 'text' %}
-                        <p class="text-lg pb-5">{{ block.value }}</p>
+                        <p class="text-lg pb-5 text-gray-800">{{ block.value }}</p>
                     {% elif block.block_type == 'paragraph' %}
                         {% include_block block %} <!-- TODO - add styling to all components of this particular value-->
                     <!-- TODO - render the image block -->

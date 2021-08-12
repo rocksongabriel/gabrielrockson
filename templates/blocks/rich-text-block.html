@@ -1,52 +1,54 @@
 <style>
-    h1, h2, h3, h4, h5, h6 {
-        font-weight: 800;
+    .g-richtext h1, h2, h3, h4, h5, h6 {
+        font-weight: 700;
         padding: 0.5rem 0;
+        color: rgba(17, 24, 39, 1);
     }
-    h1 {
+    .g-richtext h1 {
         font-size: 1.875rem;
     }
-    h2 {
+    .g-richtext h2 {
         font-size: 1.7rem;
     }
-    h3 {
+    .g-richtext h3 {
         font-size: 1.5rem;
     }
-    h4 {
+    .g-richtext h4 {
         font-size: 1.35rem;
     }
-    h5 {
+    .g-richtext h5 {
         font-size: 1.2rem;
     }
 
-    p {
-        font-size: 1.1rem;
+    .g-richtext p {
+        font-size: 1.2rem;
+        color: rgba(31, 41, 55, 1);
     }
 
-    ol {
+    .g-richtext ol {
         list-style: decimal;
         padding: 10px 20px;
         font-size: 1.05rem;
     }
-    ul {
+    .g-richtext ul {
         list-style: disc;
         padding: 10px 20px;
         font-size: 1.05rem;
     }
 
-    blockquote {
+    .g-richtext blockquote {
         font-size: 1.1rem;
         font-style: italic;
         padding: 0.3rem 1rem;
     }
 
-    /* TODO - find a way to style the links  */
-    /* a {
+    
+    .g-richtext a {
         color: rgba(0, 0, 255, 0.781);
         text-decoration: underline;
-    } */
+    }
 
-    code {
+    .g-richtext code {
         font-size: 1rem;
         font-style: italic;
         font-weight: 500;
@@ -55,6 +57,6 @@
 </style>
 
 
-<section class="mb-10">
+<section class="mb-10 g-richtext">
     {{ self }}
 </section>
